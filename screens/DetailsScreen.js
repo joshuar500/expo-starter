@@ -1,28 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { View, Button, Text, StyleSheet, FlatList } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { ListItem } from "../components/ListItem";
+import { MockGetNamesList } from "../services/mockApi";
 
 export function DetailsScreen({ navigation }) {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     // make asynchronous calls (for example, in an API) inside a useEffect hook
-    setData([
-      { key: 1, value: "Devin" },
-      { key: 2, value: "Dan" },
-      { key: 3, value: "Dominic" },
-      { key: 4, value: "Jackson" },
-      { key: 5, value: "James" },
-      { key: 6, value: "Joel" },
-      { key: 7, value: "John" },
-      { key: 8, value: "Jillian" },
-      { key: 9, value: "Jimmy" },
-      { key: 10, value: "Julie" },
-    ]);
+    // example mock IFFE async call
+    (async () => {
+      const response = await MockGetNamesList();
+      setData(response);
+    })();
   }, []); // empty array `[]` means this effect will only run once
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text>Details Screen</Text>
       <View style={styles.listView}>
         <FlatList
@@ -36,19 +31,25 @@ export function DetailsScreen({ navigation }) {
         title="Go to Details... again"
         onPress={() => navigation.navigate("Details")}
       />
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    height: "100%",
     alignItems: "center",
     justifyContent: "center",
   },
   listView: {
-    height: "50%",
+    width: "100%",
     padding: 20,
   },
-  listItem: {},
+  listItem: {
+    padding: 10,
+    marginTop: 3,
+    backgroundColor: "#e3e3e3",
+    alignItems: "center",
+  },
 });
