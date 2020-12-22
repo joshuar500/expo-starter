@@ -17,4 +17,9 @@ This starter project is a barebones Javascript project with some additional libr
 
 [Prettier](https://prettier.io/) standardizes code formatting in order to keep code clean with little effort.
 
-The file structure I've created are for `screens` and `components` -- I recommend creating `services`, `middleware`, `utils` and anything else if the project becomes complex.
+The file structure is currently as follows:
+
+- _components_ - shared components folder for screens (Buttons, Headers, ListItems)
+- _navigation_ - global navigation folder to keep App.js clean
+- _screens_ - the screen are the container views that utilize the components to display UI/UX
+- _services_ - the services utilized by the rest of the app (APIs, etc)
